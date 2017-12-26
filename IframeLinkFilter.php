@@ -5,7 +5,7 @@ namespace kriss\iframeLayout;
 use Yii;
 use yii\base\ActionFilter;
 
-class LinkFilterAction extends ActionFilter
+class IframeLinkFilter extends ActionFilter
 {
     /**
      * @var string
@@ -27,7 +27,8 @@ class LinkFilterAction extends ActionFilter
     public function beforeAction($action)
     {
         if ($this->layout === '') {
-            $this->layout = __DIR__ . '/example-views/main-content';
+            Yii::setAlias('@krissIframeLayout', __DIR__);
+            $this->layout = '@krissIframeLayout/example-views/main-content';
         }
 
         $request = Yii::$app->request;

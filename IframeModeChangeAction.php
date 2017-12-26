@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Action;
 use yii\web\Cookie;
 
-class ModeChangeAction extends Action
+class IframeModeChangeAction extends Action
 {
     const IFRAME_MODE_KEY = 'iframe-mode';
 
