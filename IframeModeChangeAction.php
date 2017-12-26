@@ -24,11 +24,12 @@ class IframeModeChangeAction extends Action
 
     /**
      * 判断是否是 iframe 的模式
+     * @param bool $default
      * @return bool
      */
-    public static function isIframeMode()
+    public static function isIframeMode($default = false)
     {
         $cookies = Yii::$app->request->cookies;
-        return (bool)$cookies->getValue(static::IFRAME_MODE_KEY, false);
+        return (bool)$cookies->getValue(static::IFRAME_MODE_KEY, $default);
     }
 }
