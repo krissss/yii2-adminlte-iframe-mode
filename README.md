@@ -37,7 +37,7 @@ public function behaviors()
 
     $behaviors['iframe_layout'] = [
         'class' => IframeLinkFilter::className(),
-        //'layout' => 'main-content' // 使用该参数自定义布局
+        //'layout' => '@app/views/layouts/main-content', // 使用该参数自定义布局
     ];
 
     return $behaviors;
