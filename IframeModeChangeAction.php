@@ -10,16 +10,27 @@ class IframeModeChangeAction extends Action
 {
     const IFRAME_MODE_KEY = 'iframe-mode';
 
+    /**
+     * 成功的消息
+     * @var string
+     */
+    public $successMsg = '切换成功';
+    /**
+     * 成功跳转的地址
+     * @var array
+     */
+    public $successRedirect = ['site/index'];
+
     public function run()
     {
         $cookies = Yii::$app->response->cookies;
         $cookies->remove(static::IFRAME_MODE_KEY);
         $cookies->add(new Cookie([
             'name' => static::IFRAME_MODE_KEY,
-            'value' => !static::isIframeMode()
+            'value' => !static::isIframeMode(),
         ]));
-        Yii::$app->session->setFlash('success', '切换成功');
-        Yii::$app->response->redirect(['site/index']);
+        Yii::$app->session->setFlash('success', $this->successMsg);
+        Yii::$app->response->redirect($this->successRedirect);
     }
 
     /**
