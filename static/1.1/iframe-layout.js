@@ -95,7 +95,7 @@ $(function () {
                 } else {
                     topWin.find('.' + iframeWrapClass).append(html);
                 }
-                $('#iframe-' + title).load(function (e) {
+                $('#iframe-' + title).on('load', function (e) {
                     setIframeHeight(e.target);
                 });
             }
