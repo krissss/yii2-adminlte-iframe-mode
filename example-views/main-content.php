@@ -24,19 +24,31 @@ use yii\widgets\Breadcrumbs;
     <body class="<?= \dmstr\helpers\AdminLteHelper::skinClass() ?>">
     <?php $this->beginBody() ?>
 
-    <div class="iframe-content-wrapper content-wrapper">
+    <div class="wrapper">
+        
+        // header.php ...
+        // left.php ...
+        
+        <div class="content-wrapper">
+            <ul class="menu-tabs hidden">
+                <li>
+                    <?= Html::a('<span><i class="fa fa-home"></i></span>', '#') ?>
+                </li>
+            </ul>
+            <div class="content-iframe">
+                <section class="content-header">
+                    <?= Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        'homeLink' => ['label' => '首页', 'url' => ['/home']],
+                    ]) ?>
+                </section>
 
-        <section class="content-header">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                'homeLink' => ['label' => '首页', 'url' => ['/home']],
-            ]) ?>
-        </section>
-
-        <section class="content">
-            <?= Alert::widget() ?>
-            <?= $content ?>
-        </section>
+                <section class="content">
+                    <?= Alert::widget() ?>
+                    <?= $content ?>
+                </section>
+            </div>
+        </div>
 
     </div>
 
