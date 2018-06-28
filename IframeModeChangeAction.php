@@ -9,12 +9,8 @@ use yii\web\Cookie;
 class IframeModeChangeAction extends Action
 {
     const IFRAME_MODE_KEY = 'iframe-mode';
+    const IFRAME_MODE_SWITCH = true;
 
-    /**
-     * 成功的消息
-     * @var string
-     */
-    public $successMsg = '切换成功';
     /**
      * 成功跳转的地址
      * @var array
@@ -38,9 +34,9 @@ class IframeModeChangeAction extends Action
      * @param bool $default
      * @return bool
      */
-    public static function isIframeMode($default = false)
+    public static function isIframeMode()
     {
         $cookies = Yii::$app->request->cookies;
-        return (bool)$cookies->getValue(static::IFRAME_MODE_KEY, $default);
+        return (bool)$cookies->getValue(static::IFRAME_MODE_KEY, static::IFRAME_MODE_SWITCH);
     }
 }
