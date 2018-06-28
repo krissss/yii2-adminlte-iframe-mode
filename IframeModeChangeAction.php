@@ -12,6 +12,11 @@ class IframeModeChangeAction extends Action
     const IFRAME_MODE_SWITCH = true;
 
     /**
+     * 成功的消息
+     * @var string
+     */
+    public $successMsg = '切换成功';
+    /**
      * 成功跳转的地址
      * @var array
      */
