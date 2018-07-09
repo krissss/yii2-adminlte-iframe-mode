@@ -37,9 +37,39 @@ class IframeLinkFilter extends ActionFilter
         } else {
             $target = $request->get($this->queryTargetParam);
         }
+
+        // 解决 由 iframe 内页 redirect 会导致多出 layout 的问题
+        $referer = Yii::$app->request->referrer;
+        if (!$target && $referer) {
+            $target = $this->getUrlQuery($referer, $this->queryTargetParam);
+        }
+
         if (in_array($target, $this->queryTargetValues)) {
             $action->controller->layout = $this->layout;
         }
+
         return parent::beforeAction($action);
+    }
+
+    protected function getUrlQuery($url, $queryParam)
+    {
+        $queryArr = $this->convertUrlQuery($url);
+        return isset($queryArr[$queryParam]) ? $queryArr[$queryParam] : null;
+    }
+
+    protected function convertUrlQuery($url)
+    {
+        $queryParts = parse_url($url);
+        if (!isset($queryParts['query'])) {
+            return [];
+        }
+        $queryParts = $queryParts['query'];
+        $queryParts = explode('&', $queryParts);
+        $params = [];
+        foreach ($queryParts as $param) {
+            $item = explode('=', $param);
+            $params[$item[0]] = $item[1];
+        }
+        return $params;
     }
 }
