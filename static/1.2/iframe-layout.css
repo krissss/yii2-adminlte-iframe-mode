@@ -76,8 +76,8 @@ html, body {
 
 /* 滚动条样式 */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 1px;
+  width: 3px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
