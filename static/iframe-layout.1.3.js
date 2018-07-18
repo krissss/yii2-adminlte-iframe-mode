@@ -27,7 +27,7 @@ $(function () {
     return $url + $name + '=' + $value;
   }
 
-  if (self.frameElement && self.frameElement.tagName == "IFRAME") {
+  if (self.frameElement && self.frameElement.tagName === "IFRAME") {
     // iframe 内部页面
 
     // 去除 首页高度大于窗口高度 增加出来的滚动条
@@ -41,7 +41,12 @@ $(function () {
       if ($(this).hasClass('show_ajax_modal')) {
         return true;
       }
-      $(this).attr('href', setQueryParam($(this).attr('href'), iframeQueryParam, ifraemQueryValue));
+      var href = trim($(this).attr('href'));
+      // 跳过 js
+      if (href.indexOf('javascript:') === 0 || href.indexOf('#') === 0) {
+        return true;
+      }
+      $(this).attr('href', setQueryParam(href, iframeQueryParam, ifraemQueryValue));
     })
   } else {
     // iframe 外部页面
@@ -97,7 +102,7 @@ $(function () {
       e.preventDefault();
       var href = $(this).attr('href'),
         title = $(this).find('span').text();
-      if (href == '#' || href == 'javascript:' || href == 'javascript:;' || href == 'javascript:void(0);') {
+      if (href.indexOf('javascript:') === 0 || href.indexOf('#') === 0) {
         return;
       }
       $('.sidebar li').removeClass('active').each(function () {

@@ -6,13 +6,13 @@ use yii\web\AssetBundle;
 
 class IframeAsset extends AssetBundle
 {
-    public $sourcePath = __DIR__ . '/static/1.2';
+    public $sourcePath = __DIR__ . '/static';
 
     public $css = [
-        'iframe-layout.css',
+        'iframe-layout.1.3.css',
     ];
     public $js = [
-        'iframe-layout.js'
+        'iframe-layout.1.3.js'
     ];
 
     public $depends = [
