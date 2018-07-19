@@ -41,7 +41,7 @@ $(function () {
       if ($(this).hasClass('show_ajax_modal')) {
         return true;
       }
-      var href = trim($(this).attr('href'));
+      var href = $(this).attr('href');
       // 跳过 js
       if (href.indexOf('javascript:') === 0 || href.indexOf('#') === 0) {
         return true;
