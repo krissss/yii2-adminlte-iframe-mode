@@ -4,7 +4,7 @@ Yii2 AdminLte Iframe Mode
 
 Important
 ------------
-for `V3.0`。 Not compatible for before !!
+for `V2.0`。 Not compatible for before !!
 
 Installation
 ------------
