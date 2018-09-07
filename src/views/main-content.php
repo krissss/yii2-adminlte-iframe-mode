@@ -2,7 +2,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-\kriss\iframeLayout\IframeAsset::register($this);
+\kriss\iframeLayout\widget\IframeModeAssetWidget::widget();
 
 use dmstr\widgets\Alert;
 use yii\helpers\Html;
@@ -25,10 +25,10 @@ use yii\widgets\Breadcrumbs;
     <?php $this->beginBody() ?>
 
     <div class="wrapper">
-        
+
         // header.php ...
         // left.php ...
-        
+
         <div class="content-wrapper">
             <ul class="menu-tabs hidden">
                 <li>

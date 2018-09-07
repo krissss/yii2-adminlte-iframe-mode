@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "kriss\\iframeLayout\\": ""
+            "kriss\\iframeLayout\\": "src"
         }
     }
 }
