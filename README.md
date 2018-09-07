@@ -2,6 +2,10 @@ Yii2 AdminLte Iframe Mode
 =========================
 Yii2 AdminLte Iframe Mode
 
+Important
+------------
+for `V3.0`。 Not compatible for before !!
+
 Installation
 ------------
 
@@ -16,7 +20,7 @@ php composer.phar require kriss/yii2-adminlte-iframe-mode -vvv
 or add
 
 ```
-"kriss/yii2-adminlte-iframe-mode": "*"
+"kriss/yii2-adminlte-iframe-mode": "^3.0"
 ```
 
 to the require section of your `composer.json` file.
@@ -28,9 +32,30 @@ to the require section of your `composer.json` file.
 全局全部开启标签页模式
 -----
 
+1. 增加配置
+
+```php
+<?php
+use kriss\iframeLayout\component\IframeMode;
+
+return [
+    'components' => [
+        IframeMode::COMPONENT_NAME => [
+            'class' => IframeMode::class,
+            'enable' => true,
+            'defaultSwitch' => true,
+        ],
+    ]
+];
+
+```
+
 1. 在基础控制器中增加 `behavior`
 
 ```php
+<?php
+use kriss\iframeLayout\filter\IframeLinkFilter;
+
 public function behaviors()
 {
     $behaviors = parent::behaviors();
@@ -44,12 +69,13 @@ public function behaviors()
 }
 ```
 
-> 布局参考: [/example-views/main-content.php](https://github.com/krissss/yii2-adminlte-iframe-mode/blob/master/example-views/main-content.php)
+> 布局参考: [/views/main-content.php](https://github.com/krissss/yii2-adminlte-iframe-mode/blob/master/src/views/main-content.php)
 
 2. 在默认的布局文件 `(main.php)` 中增加 `Asset`
 
 ```php
-\kriss\iframeLayout\IframeAsset::register($this);
+<?php
+\kriss\iframeLayout\widget\IframeModeAssetWidget::widget();
 ```
  
 用户动态可更改模式
@@ -60,12 +86,15 @@ public function behaviors()
 2. 在某个控制器，比如 `SiteController` 中增加 `action`
  
 ```php
+<?php
+use kriss\iframeLayout\action\IframeModeSwitchAction;
+
 public function actions()
 {
     return [
         // 其他 actions
-        'iframe-mode-change' => [
-            'class' => IframeModeChangeAction::className(),
+        'iframe-mode-switch' => [
+            'class' => IframeModeSwitchAction::className(),
         ]
     ];
 }
@@ -74,17 +103,5 @@ public function actions()
 3. 增加切换模式的链接按钮
 
 ```php
-<?= Html::a((IframeModeChangeAction::isIframeMode() ? '关闭' : '开启') . '标签页模式',
-    ['/site/iframe-mode-change'], [
-        'data-method' => 'post',
-        'class' => 'dropdown-menu-item'
-    ]) ?>
-```
- 
-4. 修改原 `Asset` 引入方式
-
-```php
-if (IframeModeChangeAction::isIframeMode()) {
-    IframeAsset::register($this);
-}
+<?= \kriss\iframeLayout\widget\IframeModeSwitchWidget::widget() ?>
 ```
