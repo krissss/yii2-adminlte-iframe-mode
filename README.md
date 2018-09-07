@@ -20,7 +20,7 @@ php composer.phar require kriss/yii2-adminlte-iframe-mode -vvv
 or add
 
 ```
-"kriss/yii2-adminlte-iframe-mode": "^3.0"
+"kriss/yii2-adminlte-iframe-mode": "^2.0"
 ```
 
 to the require section of your `composer.json` file.
