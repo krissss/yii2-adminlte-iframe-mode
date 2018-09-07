@@ -8,10 +8,18 @@ use yii\base\ActionFilter;
 class IframeLinkFilter extends ActionFilter
 {
     /**
+     * 是否启用
+     * 在必须出现 target=iframe 这种后缀时，可以通过 IframeModeChangeAction::isIframeMode() 来确定是否需要启用
+     * @var bool
+     */
+    public $enable = true;
+    /**
+     * @see iframe-layout.js iframeQueryParam
      * @var string
      */
     public $queryTargetParam = 'target';
     /**
+     * @see iframe-layout.js iframeQueryValue
      * @var array
      */
     public $queryTargetValues = ['iframe'];
@@ -26,6 +34,10 @@ class IframeLinkFilter extends ActionFilter
      */
     public function beforeAction($action)
     {
+        if (!$this->enable) {
+            return parent::beforeAction($action);
+        }
+
         if ($this->layout === '') {
             Yii::setAlias('@krissIframeLayout', __DIR__);
             $this->layout = '@krissIframeLayout/example-views/main-content';

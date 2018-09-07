@@ -4,7 +4,7 @@ $(function () {
     hrefList = {}, // 路由信息存储的变量
     hrefListNull = true, // 路由信息存储是否为空
     iframeQueryParam = 'target', // iframe 追加的参数的名
-    ifraemQueryValue = 'iframe', // iframe 追加的参数的值
+    iframeQueryValue = 'iframe', // iframe 追加的参数的值
     iframeWrapClass = 'content-iframe', // iframe 追加的进入的区域
     iframeClass = 'iframe-layout', // 每个 iframe 上的 class
     menuTabClass = 'menu-tabs', // 顶部 tab 菜单的 class
@@ -46,7 +46,7 @@ $(function () {
       if (href.indexOf('javascript:') === 0 || href.indexOf('#') === 0) {
         return true;
       }
-      $(this).attr('href', setQueryParam(href, iframeQueryParam, ifraemQueryValue));
+      $(this).attr('href', setQueryParam(href, iframeQueryParam, iframeQueryValue));
     })
   } else {
     // iframe 外部页面
@@ -114,7 +114,7 @@ $(function () {
       if (!hrefList[title]) {
         // 路由表中不存在，则加入路由表，然后显示该链接
         hrefList[title] = href;
-        var html = '<iframe id="iframe-' + title + '" class="' + iframeClass + '" src="' + setQueryParam(href, iframeQueryParam, ifraemQueryValue) + '"></iframe>';
+        var html = '<iframe id="iframe-' + title + '" class="' + iframeClass + '" src="' + setQueryParam(href, iframeQueryParam, iframeQueryValue) + '"></iframe>';
         addSubMenuLi(title, href, true);
         if (hrefListNull) {
           topWin.find('.' + iframeWrapClass).html(html);
