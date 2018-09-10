@@ -83,9 +83,9 @@ class IframeMode extends BaseObject
             return $this->storageComponent;
         }
         if ($this->storage == 'cookie') {
-            $this->storageComponent = new CookieStorage(Yii::$app->request->cookies);
+            $this->storageComponent = new CookieStorage();
         } elseif ($this->storage == 'session') {
-            $this->storageComponent = new SessionStorage(Yii::$app->session);
+            $this->storageComponent = new SessionStorage();
         } else {
             throw new Exception('Unknown storage');
         }

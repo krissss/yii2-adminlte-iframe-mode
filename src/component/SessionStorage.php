@@ -2,7 +2,7 @@
 
 namespace kriss\iframeLayout\component;
 
-use yii\base\Exception;
+use Yii;
 use yii\web\Session;
 
 class SessionStorage extends BaseStorage
@@ -12,12 +12,9 @@ class SessionStorage extends BaseStorage
      */
     public $storage;
 
-    public function __construct($component)
+    public function __construct()
     {
-        parent::__construct($component);
-        if (!$this->storage instanceof Session) {
-            throw new Exception('Must Be yii\web\Session');
-        }
+        $this->storage = Yii::$app->session;
     }
 
     /**

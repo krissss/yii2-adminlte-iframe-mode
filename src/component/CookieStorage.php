@@ -2,25 +2,11 @@
 
 namespace kriss\iframeLayout\component;
 
-use yii\base\Exception;
+use Yii;
 use yii\web\Cookie;
-use yii\web\CookieCollection;
 
 class CookieStorage extends BaseStorage
 {
-    /**
-     * @var CookieCollection
-     */
-    public $storage;
-
-    public function __construct($component)
-    {
-        parent::__construct($component);
-        if (!$this->storage instanceof CookieCollection) {
-            throw new Exception('Must Be yii\web\CookieCollection');
-        }
-    }
-
     /**
      * @param $key
      * @param null $default
@@ -28,7 +14,7 @@ class CookieStorage extends BaseStorage
      */
     public function get($key, $default = null)
     {
-        return $this->storage->getValue($key, $default);
+        return Yii::$app->request->cookies->getValue($key, $default);
     }
 
     /**
@@ -37,7 +23,7 @@ class CookieStorage extends BaseStorage
      */
     public function set($key, $value)
     {
-        $this->storage->add(new Cookie([
+        Yii::$app->response->cookies->add(new Cookie([
             'name' => $key,
             'value' => $value,
         ]));
